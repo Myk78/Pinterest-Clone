@@ -1,9 +1,45 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://127.0.0.1:27017/pinterest");
+
+// Define the schema for a user
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  fullname: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  posts: {
+    type: [String], // Array of strings to store post IDs or post content
+    default: []
+  },
+  dp: {
+    type: String, // URL or path to the display picture
+  }
+}, {
+  timestamps: true // Adds createdAt and updatedAt timestamps
 });
 
-module.exports = router;
+// Create the model from the schema and export it
+module.exports = mongoose.model('User', userSchema);
+
+
+
