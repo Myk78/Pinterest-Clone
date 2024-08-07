@@ -4,12 +4,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/pinterest');
 
 // Define the schema for a post
 const postSchema = new mongoose.Schema({
-  description: {
+  PostText: {
     type: String,
     required: true,
     trim: true
   },
-  date: {
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'User'
+  },
+  Createdat: {
     type: Date,
     default: Date.now // Default to the current date and time
   },
@@ -17,8 +21,6 @@ const postSchema = new mongoose.Schema({
     type: Array,
     default:[] // Default to 0 likes
   }
-}, {
-  timestamps: true // Adds createdAt and updatedAt timestamps
 });
 
 // Create the model from the schema and export it

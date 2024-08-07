@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  posts: {
-    type: [String], // Array of strings to store post IDs or post content
-    default: []
-  },
+  posts: [{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Post'
+  }],
   dp: {
     type: String, // URL or path to the display picture
   }
