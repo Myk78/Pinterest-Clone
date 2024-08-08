@@ -13,6 +13,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// profile route
+router.get('/profile',isLoggedIn,function(req,res){
+  res.send('profile page h');
+})
+
+
 // register user route
 router.post('/register',function(req,res){
   // let userdata = new UserModel({
@@ -40,7 +46,21 @@ router.post('/login',passport.authenticate("local",{
 
 });
 
-// 
+// logout user 
+router.get('/logout',function(req,res,next){
+  req.logOut(function(err){
+    if(err) return next(err);
+    res.redirect("/");
+  });
+});
+
+// Middleware route
+function isLoggedIn(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/");
+};
 
 
 
