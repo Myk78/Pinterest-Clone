@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/feed.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    
+
+    <div class='pinterest-feed-container'>
+        <div class='pinterest-feed'></div></div>
+    </div>  f
+    </div>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="javascripts/feed.js"></script>
+
+
+
+    <!-- <div id='example1'>
+        <h1>Pinterest Profile Widget</h1>
+        
+        <p>A simple script for displaying your pins on your website. I currently have this set to display your profile photo, display name, and your bio. As well as your first 20 pins. </p>
+        
+        <div class='pin-widget'>  
+        <div class='pin-user-profile'></div>  
+        <div class='pinterest-feed-container'><div class='pinterest-feed'></div></div>
+        <div class="pinterest-link"></div>  
+        </div>  
+        </div>    
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.j"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="/javascripts/feed.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Your Pinterest Username
+                var pinUser = 'mheowing';
+        
+                // Number of Pins you wish to display within the widget
+                var numPins = '20';
+        
+                var $pinProfile = $('.pin-user-profile');
+                var $pinFeed = $('.pinterest-feed');
+                var $pinLink = $('.pinterest-link');
+        
+                $.ajax({
+                    dataType: 'jsonp',
+                    type: 'GET',
+                    url: 'https://widgets.pinterest.com/v3/pidgets/users/' + pinUser + '/pins'
+                }).done(function (response) {
+                    var userinfo = response.data.user;
+                    var profileImg = userinfo.image_small_url;
+                    var displayName = userinfo.full_name;
+                    var userBio = userinfo.about;
+        
+                    var pins = response.data.pins;
+                    var html = '';
+                    for (var i = 0; i < numPins; i++) {
+                        var imageUrl = pins[i].images['237x'].url;
+                        var pinUrl = pins[i].id;
+        
+                        html += '<div class="pinterest-feed-pin"><a href="https://pinterest.com/pin/url/' + pinUrl + '" target="_blank" rel="nofollow"><img src="' + imageUrl + '" alt="Pin Feed"></a></div>';
+                    }
+        
+                    var userLink = userinfo.profile_url;
+        
+                    $pinProfile.html('<img src="' + profileImg + '" alt="" class="pin-user-profile-image"><div class="pin-user-details"><span class="pin-user-name">' + displayName + '</span><span class="pin-user-bio">' + userBio + '</span></div>');
+        
+                    $pinLink.html('<a href="' + userLink + '" rel="nofollow" target="_blank"><i class="fab fa-pinterest" style="display:inline-block; margin-right:5px; font-size:20px; line-height:20px; vertical-align:text-top;"></i><span style="display:inline-block; line-height:20px; font-size:12px; vertical-align:text-top;">Follow @' + pinUser + ' on Pinterest</span></a>');
+        
+                    $pinFeed.html(html);
+                }).fail(function () {
+                    console.log('Uh oh');
+                });
+        
+                $(window).load(function () {
+                    setTimeout(function () {
+                        $('.pinterest-feed').masonry({
+                            itemSelector: '.pinterest-feed-pin',
+                            percentPosition: true
+                        });
+                    }, 1000);
+                });
+            });
+            </script> -->
+</body>
+</html>

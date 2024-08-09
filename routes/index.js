@@ -6,7 +6,7 @@ const passport = require('passport');
 
 //these to line is used to login the user
 const localStrategy = require('passport-local');
-passport.authenticate(new localStrategy(UserModel.authenticate()));
+passport.use(new localStrategy(UserModel.authenticate()));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 // profile route
 router.get('/profile',isLoggedIn,function(req,res){
   res.send('profile page h');
-})
+});
 
 
 // register user route
@@ -36,12 +36,16 @@ router.post('/register',function(req,res){
     });
   });
 });
+//login route
+router.get('/login',function(req,res){
+  res.render('login');
+})
 
 
 // login user
 router.post('/login',passport.authenticate("local",{
   successRedirect:"/profile",
-  failureRedirect:"/"
+  failureRedirect:"/login"
 }),function(req,res){
 
 });
@@ -50,7 +54,7 @@ router.post('/login',passport.authenticate("local",{
 router.get('/logout',function(req,res,next){
   req.logOut(function(err){
     if(err) return next(err);
-    res.redirect("/");
+    res.redirect("/login");
   });
 });
 
@@ -61,6 +65,11 @@ function isLoggedIn(req,res,next){
   }
   res.redirect("/");
 };
+
+// feed route
+router.get('/feed',function(req,res){
+  res.render('feed');
+})
 
 
 
