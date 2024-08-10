@@ -38,14 +38,17 @@ router.post('/register',function(req,res){
 });
 //login route
 router.get('/login',function(req,res){
-  res.render('login');
-})
+  // console.log(req.flash());
+
+  res.render('login',{error: req.flash('error')});
+});
 
 
 // login user
 router.post('/login',passport.authenticate("local",{
   successRedirect:"/profile",
-  failureRedirect:"/login"
+  failureRedirect:"/login",
+  failureFlash: true
 }),function(req,res){
 
 });
@@ -63,7 +66,7 @@ function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect("/login");
+  res.redirect("/");
 };
 
 // feed route
