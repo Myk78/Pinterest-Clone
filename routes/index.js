@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 // profile route
 router.get('/profile',isLoggedIn,function(req,res){
-  res.send('profile page h');
+  res.render('profile');
 });
 
 
@@ -63,7 +63,7 @@ function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect("/");
+  res.redirect("/login");
 };
 
 // feed route
