@@ -14,8 +14,12 @@ router.get('/', function(req, res, next) {
 });
 
 // profile route
-router.get('/profile',isLoggedIn,function(req,res){
-  res.render('profile');
+router.get('/profile',isLoggedIn, async function(req,res){
+  const user = await UserModel.findOne({
+    username:req.session.passport.user
+  });
+  // console.log(user);
+  res.render('profile',{user});
 });
 
 

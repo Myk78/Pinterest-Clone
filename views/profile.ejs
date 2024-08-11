@@ -13,11 +13,19 @@
           <div class="profile-picture">
             <img src="https://images.unsplash.com/photo-1723114789605-8abb02df2458?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture">
           </div>
-          <h2 class="name">Username</h2>
-          <h3 class="username">@username</h3>
-          <p class="tagline">tags.</p>
-          <p class="description">description</p>
-          <a href="#" class="button">Profile Setting</a>
+          <h2 class="name"><%= user.fullname%></h2>
+          <h3 class="username"><%= user.username%></h3>
+          <p class="tagline">Lorem ipsum dolor sit amet.</p>
+          <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, tenetur!</p>
+          <a href="/logout" class="button">logout</a>
+          <div class="mt-3">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+              <input type="text" name="imagetext" placeholder="wirte something your post">
+              <input type="file" name="imagefile">
+              <button type="submit">UploadPost</button>
+            </form>
+
+          </div>
         </div>
     </div>
     <div class="container">
