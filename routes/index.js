@@ -3,6 +3,7 @@ var router = express.Router();
 const UserModel = require('./users');
 const PostModel = require('./post');
 const passport = require('passport');
+const upload = require('./multer');
 
 //these to line is used to login the user
 const localStrategy = require('passport-local');
@@ -17,9 +18,28 @@ router.get('/', function(req, res, next) {
 router.get('/profile',isLoggedIn, async function(req,res){
   const user = await UserModel.findOne({
     username:req.session.passport.user
-  });
+  }).populate('posts')
+  console.log(user);
   // console.log(user);
   res.render('profile',{user});
+});
+
+// upload image 
+router.post('/upload', isLoggedIn, upload.single('file'), async function(req,res){
+  if (!req.file) {
+    return res.status(404).send("No file Found");
+  }
+  // res.send("File Upload Successfully");
+  // jo file upload ki h usko save karwao post may or post ki id user ko du or user ki id post ko
+  const user = await UserModel.findOne({username:req.session.passport.user});
+  const postdata = await PostModel.create({
+    Posttext:req.body.PostText,
+    Postimage: req.file.filename,
+    user:user._id
+  });
+  user.posts.push(postdata._id);
+  await user.save();
+  res.send('done');
 });
 
 
