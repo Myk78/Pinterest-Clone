@@ -63,4 +63,9 @@ body {
   .button:hover {
     background-color: #e70f1a;
   }
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
   

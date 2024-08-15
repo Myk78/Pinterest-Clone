@@ -31,10 +31,10 @@
     <div class="container">
         <div class="row">
             <!-- <div class="col-md-6"> -->
-              <div class="cards">
+              <div class="cards flex">
                 <% user.posts.forEach(function(post){ %>
-                  <div class="card" style="width: 20%;">
-                  <img src="/images/uploads/<%= post.Postimage %>" class="card-img-top" alt="..." >
+                  <div class="card" >
+                  <img style="height: 300px; width:200px;" src="/images/uploads/<%= post.Postimage %>" class="card-img-top" alt="..." >
                   <div class="card-body">
                     <h5 class="card-title"><%=post.Posttext%></h5>
                     <a href="#" class="btn btn-danger">View</a>

@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/profile',isLoggedIn, async function(req,res){
   const user = await UserModel.findOne({
     username:req.session.passport.user
-  }).populate('posts')
+  }).populate('posts');
   console.log(user);
   // console.log(user);
   res.render('profile',{user});
@@ -39,7 +39,7 @@ router.post('/upload', isLoggedIn, upload.single('file'), async function(req,res
   });
   user.posts.push(postdata._id);
   await user.save();
-  res.send('done');
+  res.redirect('/profile');
 });
 
 
